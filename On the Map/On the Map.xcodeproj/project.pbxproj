@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7017372E1B11A6BD00204C01 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7017372D1B11A6BD00204C01 /* MapView.swift */; };
 		703AA6721AFF07030027BE91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703AA6711AFF07030027BE91 /* AppDelegate.swift */; };
 		703AA6741AFF07030027BE91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703AA6731AFF07030027BE91 /* ViewController.swift */; };
 		703AA6771AFF07030027BE91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 703AA6751AFF07030027BE91 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7017372D1B11A6BD00204C01 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		703AA66C1AFF07030027BE91 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		703AA6701AFF07030027BE91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		703AA6711AFF07030027BE91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				703AA66F1AFF07030027BE91 /* Supporting Files */,
 				703AA6911B05C5CF0027BE91 /* LoginController.swift */,
 				703AA6931B05CB9B0027BE91 /* UdacityClient.swift */,
+				7017372D1B11A6BD00204C01 /* MapView.swift */,
 			);
 			path = "On the Map";
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				703AA6741AFF07030027BE91 /* ViewController.swift in Sources */,
 				703AA6921B05C5CF0027BE91 /* LoginController.swift in Sources */,
+				7017372E1B11A6BD00204C01 /* MapView.swift in Sources */,
 				703AA6941B05CB9B0027BE91 /* UdacityClient.swift in Sources */,
 				703AA6721AFF07030027BE91 /* AppDelegate.swift in Sources */,
 			);

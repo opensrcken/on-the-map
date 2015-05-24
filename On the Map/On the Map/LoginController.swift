@@ -8,18 +8,22 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+public final class LoginController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         loginButton.setTitle("Submit", forState: UIControlState.Normal)
         loginButton.setTitle("Authenticating...", forState: UIControlState.Disabled)
+    }
+    
+    internal func onLogin() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func onPressLogin(sender: AnyObject) {
@@ -29,9 +33,25 @@ class LoginController: UIViewController {
             if let error = error {
                 self.showAlert("Network Error", message: error.localizedDescription)
             } else {
-                if let result = JSONResult.valueForKey("session") as? [String : AnyObject] {
-                    // TODO: persist this session somewhere
-                    println(result)
+                if let session = JSONResult.valueForKey("session") as? [String : AnyObject] {
+                    if let account = JSONResult.valueForKey("account") as? [String : AnyObject] {
+                        let object = UIApplication.sharedApplication().delegate
+                        let appDelegate = object as! AppDelegate
+                        
+                        println(session["expiration"] as! String)
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSSSS'Z"
+                        let date = dateFormatter.dateFromString(session["expiration"] as! String)
+                        let key = account["key"] as! NSString
+                        
+                        appDelegate.sessionExpiration = date
+                        appDelegate.accountId = key.longLongValue
+                        
+                        self.onLogin()
+                    } else {
+                        self.showAlert("Invalid Data", message: "Expected a user property in the response.")
+                    }
                 } else {
                     self.showAlert("Invalid Credentials", message: "Double-check your username and password.")
                 }
