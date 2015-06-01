@@ -28,28 +28,16 @@ class UdacityClient : NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error…
+            if error != nil {
                 completionHandler(data: nil, error: error)
                 return
             }
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            let (json, error): (AnyObject!, NSError?) = self.parseJSON(newData)
+            let (json, error): (AnyObject!, NSError?) = JSON.parse(newData)
             completionHandler(data: json, error: error)
         }
         task.resume()
         return task
-    }
-    
-    func parseJSON(data: NSData) -> (AnyObject!, NSError?) {
-        var parsingError: NSError? = nil
-        
-        let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
-        
-        if let error = parsingError {
-            return (nil, error)
-        } else {
-            return (parsedResult, nil)
-        }
     }
     
     class func sharedInstance() -> UdacityClient {

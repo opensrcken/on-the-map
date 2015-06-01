@@ -35,16 +35,13 @@ public final class LoginController: UIViewController {
             } else {
                 if let session = JSONResult.valueForKey("session") as? [String : AnyObject] {
                     if let account = JSONResult.valueForKey("account") as? [String : AnyObject] {
-                        let object = UIApplication.sharedApplication().delegate
-                        let appDelegate = object as! AppDelegate
-                        
-                        println(session["expiration"] as! String)
-                        
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSSSS'Z"
                         let date = dateFormatter.dateFromString(session["expiration"] as! String)
                         let key = account["key"] as! NSString
                         
+                        let object = UIApplication.sharedApplication().delegate
+                        let appDelegate = object as! AppDelegate
                         appDelegate.sessionExpiration = date
                         appDelegate.accountId = key.longLongValue
                         

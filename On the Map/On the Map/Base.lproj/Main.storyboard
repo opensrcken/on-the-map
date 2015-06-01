@@ -236,6 +236,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Hth-wF-prD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QCc-ws-ojU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uXF-RX-7MJ">
